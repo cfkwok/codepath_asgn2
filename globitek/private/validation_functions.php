@@ -21,7 +21,7 @@
 
   // has_valid_email_format('test@test.com')
   function has_valid_email_format($value) {
-    if (preg_match('/^[A-Za-z][A-Za-z0-9 @._-]$/', $value)) {
+    if (filter_var($value, FILTER_VALIDATE_EMAIL)) {
       return true;
     } else {
       return false;
