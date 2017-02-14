@@ -44,9 +44,7 @@
       return false;
     }
   }
-
-  // My custom validations
-  // Validate state/territory names
+  
   function has_valid_place_name($placeName) {
     if (preg_match("/^[A-Za-z \-]+$/", $placeName)) {
       return true;
