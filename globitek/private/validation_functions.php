@@ -44,7 +44,7 @@
       return false;
     }
   }
-  
+
   function has_valid_place_name($placeName) {
     if (preg_match("/^[A-Za-z \-]+$/", $placeName)) {
       return true;
@@ -63,6 +63,14 @@
 
   function is_number($value) {
     if (preg_match('/^[0-9]+$/', $value)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  function is_capitalized($value) {
+    if (preg_match('/^[A-Z]+$/', $value)) {
       return true;
     } else {
       return false;
