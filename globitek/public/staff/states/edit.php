@@ -10,8 +10,8 @@ $states_result = find_state_by_id($_GET['id']);
 // No loop, only one result
 $state = db_fetch_assoc($states_result);
 
-if (isset($_POST['name'])) { $state['name'] = $_POST['name']; }
-if (isset($_POST['code'])) { $state['code'] = $_POST['code']; }
+if (isset($_POST['name'])) { $state['name'] = h($_POST['name']); }
+if (isset($_POST['code'])) { $state['code'] = h($_POST['code']); }
 
 if (is_post_request()) {
 	$result = update_state($state);
@@ -28,13 +28,13 @@ if (is_post_request()) {
 <?php include(SHARED_PATH . '/header.php'); ?>
 
 <div id="main-content">
-  <a href="#add_a_url">Back to States List</a><br />
+  <a href="index.php">Back to States List</a><br />
 
-  <h1>Edit State: <?php echo $state['name']; ?></h1>
+  <h1>Edit State: <?php echo h($state['name']); ?></h1>
 
   <?php echo display_errors($errors); ?>
 
-  <form action="edit.php?id=<?php echo $state['id']; ?>" method="post">
+  <form action="edit.php?id=<?php echo h($state['id']); ?>" method="post">
     Name:<br />
     <input type="text" name="name" value="<?php echo $state['name']; ?>" /><br />
     Code:<br />

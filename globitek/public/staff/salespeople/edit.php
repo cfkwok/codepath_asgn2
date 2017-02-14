@@ -11,10 +11,10 @@ $salesperson = db_fetch_assoc($salespeople_result);
 $errors = array();
 
 if (is_post_request()) {
-	if (isset($_POST['first_name'])) { $salesperson['first_name'] = $_POST['first_name']; }
-	if (isset($_POST['last_name'])) { $salesperson['last_name'] = $_POST['last_name']; }
-	if (isset($_POST['phone'])) { $salesperson['phone'] = $_POST['phone']; }
-	if (isset($_POST['email'])) { $salesperson['email'] = $_POST['email']; }
+	if (isset($_POST['first_name'])) { $salesperson['first_name'] = h($_POST['first_name']); }
+	if (isset($_POST['last_name'])) { $salesperson['last_name'] = h($_POST['last_name']); }
+	if (isset($_POST['phone'])) { $salesperson['phone'] = h($_POST['phone']); }
+	if (isset($_POST['email'])) { $salesperson['email'] = h($_POST['email']); }
 
 	$result = update_salesperson($salesperson);
 
@@ -32,11 +32,11 @@ if (is_post_request()) {
 <div id="main-content">
   <a href="index.php">Back to Salespeople List</a><br />
 
-  <h1>Edit Salesperson: <?php echo $salesperson['first_name'] . " " . $salesperson['last_name']; ?></h1>
+  <h1>Edit Salesperson: <?php echo h($salesperson['first_name']) . " " . h($salesperson['last_name']); ?></h1>
 
   <?php echo display_errors($errors); ?>
 
-  <form action="edit.php?id=<?php echo $salesperson['id']; ?>" method="POST">
+  <form action="edit.php?id=<?php echo h($salesperson['id']); ?>" method="POST">
   	First name: <br />
   	<input type="text" name="first_name" value="<?php echo $salesperson['first_name']; ?>" /><br />
   	Last name: <br />

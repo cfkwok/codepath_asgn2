@@ -11,8 +11,8 @@ $territory = db_fetch_assoc($territories_result);
 $errors = array();
 
 if (is_post_request()) {
-	if (isset($_POST['name'])) { $territory['name'] = $_POST['name']; }
-	if (isset($_POST['position'])) { $territory['position'] = $_POST['position']; }
+	if (isset($_POST['name'])) { $territory['name'] = h($_POST['name']); }
+	if (isset($_POST['position'])) { $territory['position'] = h($_POST['position']); }
 
 	$result = update_territory($territory);
 
@@ -24,17 +24,17 @@ if (is_post_request()) {
 }
 
 ?>
-<?php $page_title = 'Staff: Edit Territory ' . $territory['name']; ?>
+<?php $page_title = 'Staff: Edit Territory ' . h($territory['name']); ?>
 <?php include(SHARED_PATH . '/header.php'); ?>
 
 <div id="main-content">
   <a href="../show.php?id=<?php echo $territory['state_id']; ?>">Back to State Details</a><br />
 
-  <h1>Edit Territory: <?php echo $territory['name']; ?></h1>
+  <h1>Edit Territory: <?php echo h($territory['name']); ?></h1>
 
   <?php echo display_errors($errors); ?>
 
-  <form action="edit.php?id=<?php echo $territory['id']; ?>" method="POST">
+  <form action="edit.php?id=<?php echo h($territory['id']); ?>" method="POST">
   	Territory name: <br />
   	<input type="text" name="name" value="<?php echo $territory['name']; ?>" /><br />
   	Territory Position: <br />
