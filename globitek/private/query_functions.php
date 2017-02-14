@@ -28,6 +28,7 @@
   // Find all states, ordered by name
   function find_states_for_country_id($country_id=0) {
     global $db;
+    $country_id = db_escape($db, $country_id);
     $sql = "SELECT * FROM states ";
     $sql .= "WHERE country_id='" . $country_id . "' ";
     $sql .= "ORDER BY name ASC;";
@@ -38,6 +39,7 @@
   // Find state by ID
   function find_state_by_id($id=0) {
     global $db;
+    $id = db_escape($db, $id);
     $sql = "SELECT * FROM states ";
     $sql .= "WHERE id='" . $id . "';";
     $state_result = db_query($db, $sql);
@@ -142,6 +144,7 @@
   // Find all territories whose state_id (foreign key) matches this id
   function find_territories_for_state_id($state_id=0) {
     global $db;
+    $state_id = db_escape($db, $state_id);
     $sql = "SELECT * FROM territories ";
     $sql .= "WHERE state_id='" . $state_id . "' ";
     $sql .= "ORDER BY position ASC;";
@@ -152,6 +155,7 @@
   // Find territory by ID
   function find_territory_by_id($id=0) {
     global $db;
+    $id = db_escape($db, $id);
     $sql = "SELECT * FROM territories ";
     $sql .= "WHERE id='" . $id . "';";
     $territory_result = db_query($db, $sql);
@@ -258,6 +262,7 @@
   // in the join table which have the same territory ID.
   function find_salespeople_for_territory_id($territory_id=0) {
     global $db;
+    $territory_id = db_escape($db, $territory_id);
     $sql = "SELECT * FROM salespeople ";
     $sql .= "LEFT JOIN salespeople_territories
               ON (salespeople_territories.salesperson_id = salespeople.id) ";
@@ -270,6 +275,7 @@
   // Find salesperson using id
   function find_salesperson_by_id($id=0) {
     global $db;
+    $id = db_escape($db, $id);
     $sql = "SELECT * FROM salespeople ";
     $sql .= "WHERE id='" . $id . "';";
     $salespeople_result = db_query($db, $sql);
@@ -381,6 +387,7 @@
   // in the join table which have the same salesperson ID.
   function find_territories_by_salesperson_id($id=0) {
     global $db;
+    $id = db_escape($db, $id);
     $sql = "SELECT * FROM territories ";
     $sql .= "LEFT JOIN salespeople_territories
               ON (territories.id = salespeople_territories.territory_id) ";
@@ -406,6 +413,7 @@
   // Find user using id
   function find_user_by_id($id=0) {
     global $db;
+    $id = db_escape($db, $id);
     $sql = "SELECT * FROM users WHERE id='" . $id . "' LIMIT 1;";
     $users_result = db_query($db, $sql);
     return $users_result;
